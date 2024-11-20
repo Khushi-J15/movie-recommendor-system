@@ -3,15 +3,12 @@ import pickle
 import pandas as pd
 import requests
 import gzip
-import os
 
 def fetch_poster(movie_id):
-    api_key = os.getenv('TMDB_API_KEY')  # Fetch the API key from environment variable
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}"
     # url = "https://api.themoviedb.org/3/movie/{}?api_key=bb8c95c74d91c142aec197738a9b4dcf".format(movie_id)
     # data = requests.get(url)
-    # url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=bb8c95c74d91c142aec197738a9b4dcf"
-    data = requests.get(url, timeout=30)
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=bb8c95c74d91c142aec197738a9b4dcf"
+    data = requests.get(url, timeout=10)
     data = data.json()
     poster_path = data['poster_path']
     full_path = "https://image.tmdb.org/t/p/w500/" + poster_path
